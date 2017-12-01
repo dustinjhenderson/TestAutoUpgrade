@@ -10,6 +10,11 @@ def directoryLogic():
 	subDirs = os.listdir(".")
 	for subSubDir in subDirs:
 		print subSubDir
+		if((".par" in subSubDir) == False):
+			if(("." in subSubDir) == False):
+				print "rm ", subSubDir
+			else
+				print "rm -rf ", subSubDir
 
 # ------------------- main starts here -----------------
 		

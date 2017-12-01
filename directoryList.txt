@@ -2,4 +2,4 @@
 /data/dustinhe/autoUpgrade/17.1/adaptDigilentPmodLcd
 /data/dustinhe/autoUpgrade/17.1/ADCandAudioMonitor_16.0
 /data/dustinhe/autoUpgrade/17.1/an690AvmmDma
-/data/dustinhe/autoUpgrade/17.1/beMicroFullNios_16.0
+/data/dustinhe/autoUpgrade/17.1/beMicroFullNios_16.0/jimmy
