@@ -26,7 +26,7 @@ for directory in directoryList:
 		exit()
 	directoryLogic()
 	
-def directoryLogic()
+def directoryLogic():
 	print "\n"
 	print os.getcwd()
 	subDirs = os.listdir(".")
