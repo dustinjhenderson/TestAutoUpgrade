@@ -4,6 +4,15 @@ import os
 directoryList = []
 failBool = False
 
+def directoryLogic():
+	print "\n"
+	print os.getcwd()
+	subDirs = os.listdir(".")
+	for subSubDir in subDirs:
+		print subSubDir
+
+# ------------------- main starts here -----------------
+		
 with open("directoryList.txt") as dirFile:
 	directoryList = dirFile.read().splitlines()
 	
@@ -25,12 +34,5 @@ for directory in directoryList:
 		print"error"
 		exit()
 	directoryLogic()
-	
-def directoryLogic():
-	print "\n"
-	print os.getcwd()
-	subDirs = os.listdir(".")
-	for subSubDir in subDirs:
-		print subSubDir
 	
 print "done"
