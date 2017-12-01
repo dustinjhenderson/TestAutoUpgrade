@@ -11,9 +11,9 @@ def directoryLogic():
 	for subSubDir in subDirs:
 		print subSubDir
 		if((".par" in subSubDir) == False):
-			if(("." in subSubDir) == False):
+			if(("." in subSubDir) == True):
 				print "rm ", subSubDir
-			else
+			else:
 				print "rm -rf ", subSubDir
 
 # ------------------- main starts here -----------------
