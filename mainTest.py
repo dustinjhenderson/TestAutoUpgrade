@@ -15,10 +15,10 @@ def directoryLogic():
 		if((".par" in subSubDir) == False):
 			if(("." in subSubDir) == True):
 				print "rm ", subSubDir
-				cmdOut = subprocess.check_output(("rm ", subSubDir), shell=True)
+				cmdOut = subprocess.check_output(("rm " + subSubDir), shell=True)
 			else:
 				print "rm -rf ", subSubDir
-				cmdOut = subprocess.check_output(("rm -rf ", subSubDir), shell=True)
+				cmdOut = subprocess.check_output(("rm -rf " + subSubDir), shell=True)
 
 # ------------------- main starts here -----------------
 		
