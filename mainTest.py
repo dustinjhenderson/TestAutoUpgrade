@@ -1,5 +1,6 @@
 #auto upgrade regression test
 import os
+import subprocess
 
 directoryList = []
 failBool = False
@@ -13,8 +14,10 @@ def directoryLogic():
 		if((".par" in subSubDir) == False):
 			if(("." in subSubDir) == True):
 				print "rm ", subSubDir
+				up.cmdOut = subprocess.check_output(("rm ", subSubDir), shell=True)
 			else:
 				print "rm -rf ", subSubDir
+				up.cmdOut = subprocess.check_output(("rm -rf ", subSubDir), shell=True)
 
 # ------------------- main starts here -----------------
 		
