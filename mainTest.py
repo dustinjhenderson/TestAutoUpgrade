@@ -3,7 +3,8 @@ import os
 import subprocess
 
 directoryList = []
-failBool = False
+scriptFailed = False
+setUpFailed = False
 cmdOut = ""
 
 def directoryLogic():
@@ -19,6 +20,15 @@ def directoryLogic():
 			else:
 				print "rm -rf ", subSubDir
 				cmdOut = subprocess.check_output(("rm -rf " + subSubDir), shell=True)
+
+def runUpgrade(directoryList, scriptDir):
+	try:
+		os.chdir(scriptDir)
+	except:
+		exit()
+	for subDir in directoryList:
+		print "python dustinRewrite.py --single_upgrade=" + subDir
+		#cmdOut = subprocess.check_output("put somthing here", shell=True)
 
 # ------------------- main starts here -----------------
 		
@@ -44,4 +54,6 @@ for directory in directoryList:
 		exit()
 	directoryLogic()
 	
+runUpgrade(directoryList, "/data/dustinhe/designStoreScriptCopy")
+
 print "done"
