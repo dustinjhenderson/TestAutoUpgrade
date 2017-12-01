@@ -24,7 +24,13 @@ for directory in directoryList:
 	except:
 		print"error"
 		exit()
-	print os.listdir(".")
-	failBool = True
+	directoryLogic()
+	
+def directoryLogic()
+	print "\n"
+	print os.getcwd()
+	subDirs = os.listdir(".")
+	for subSubDir in subDirs:
+		print subSubDir
 	
 print "done"
