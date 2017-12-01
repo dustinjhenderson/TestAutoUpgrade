@@ -2,9 +2,10 @@
 import os
 
 directoryList = []
+failBool = False
 
 with open("directoryList.txt") as dirFile:
-	directoryList = dirFile.read().splitdirectoryList()
+	directoryList = dirFile.read().splitlines()
 	
 print "before"
 for dir in directoryList:
@@ -16,3 +17,14 @@ for dir in directoryList:
 print "after"
 for dir in directoryList:
 	print dir
+
+for directory in directoryList:
+	try:
+		os.chdir(directory)
+	except:
+		print"error"
+		exit()
+	print os.listdir(".")
+	failBool = True
+	
+print "done"
