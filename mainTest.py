@@ -28,7 +28,7 @@ def runUpgrade(directoryList, scriptDir):
 		exit()
 	for subDir in directoryList:
 		print "python dustinRewrite.py --single_upgrade=" + subDir
-		cmdOut = subprocess.check_output("put somthing here", shell=True)
+		cmdOut = subprocess.check_output("python dustinRewrite.py --single_upgrade=", shell=True)
 
 # ------------------- main starts here -----------------
 		
