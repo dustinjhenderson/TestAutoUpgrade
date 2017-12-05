@@ -7,6 +7,12 @@ scriptFailed = False
 setUpFailed = False
 cmdOut = ""
 
+def getOperatingInput():
+	print "Clear Directorys in text list?"
+	print "Launch Scipts"
+	print ""
+
+
 def directoryLogic():
 	print "\n"
 	print os.getcwd()
