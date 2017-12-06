@@ -9,7 +9,7 @@ cmdOut = ""
 clearDirs = False
 launchScripts = True
 parsFiles = False
-
+logFileName = "/LOGOUT.log"
 
 def parsInput(text):
 	text = text.strip(" ")
@@ -54,6 +54,9 @@ def runUpgrade(directoryList, scriptDir):
 		print "python dustinRewrite.py --single_upgrade=" + subDir
 		cmdOut = subprocess.check_output("python dustinRewrite.py --single_upgrade=" + subDir, shell=True)
 
+		
+
+		
 # ------------------- main starts here -----------------
 
 clearDirs, launchScripts, parsFiles = getOperatingInput(clearDirs, launchScripts, parsFiles)
