@@ -14,22 +14,23 @@ parsFiles = False
 def parsInput(text):
 	text = text.strip(" ")
 	text = text.lower()
-
+	if text[0] == "y":
+		return True
+	else:
+		return False
 
 def getOperatingInput(clearDirs, launchScripts, parsFiles):
 	print "Clear Directorys in text list? (defalt no)"
 	text = raw_input("y/n:\n")
-	print text
+	clearDirs = parsInput(text)
 	print "Launch Scipts? (defalt yes)"
 	text = raw_input("y/n:\n")
-	print text
+	launchScripts = parsInput(text)
 	print "Pars log files? (defalt no)"
 	text = raw_input("y/n:\n")
-	print text
+	parsFiles = parsInput(text)
+	return clearDirs, launchScripts, parsFiles
 
-getOperatingInput(clearDirs, launchScripts, parsFiles)
-	
-'''
 def directoryLogic():
 	print "\n"
 	print os.getcwd()
@@ -54,7 +55,9 @@ def runUpgrade(directoryList, scriptDir):
 		cmdOut = subprocess.check_output("python dustinRewrite.py --single_upgrade=" + subDir, shell=True)
 
 # ------------------- main starts here -----------------
-		
+
+clearDirs, launchScripts, parsFiles = getOperatingInput(clearDirs, launchScripts, parsFiles)
+
 with open("directoryList.txt") as dirFile:
 	directoryList = dirFile.read().splitlines()
 	
@@ -75,9 +78,10 @@ for directory in directoryList:
 	except:
 		print"error"
 		exit()
-	directoryLogic()
-	
-runUpgrade(directoryList, "/data/dustinhe/designStoreScriptCopy")
+	if(clearDirs == True):
+		directoryLogic()
+
+if(launchScripts == True):
+	runUpgrade(directoryList, "/data/dustinhe/designStoreScriptCopy")
 
 print "done"
-'''
