@@ -6,13 +6,30 @@ directoryList = []
 scriptFailed = False
 setUpFailed = False
 cmdOut = ""
-
-def getOperatingInput():
-	print "Clear Directorys in text list?"
-	print "Launch Scipts"
-	print ""
+clearDirs = False
+launchScripts = True
+parsFiles = False
 
 
+def parsInput(text):
+	text = text.strip(" ")
+	text = text.lower()
+
+
+def getOperatingInput(clearDirs, launchScripts, parsFiles):
+	print "Clear Directorys in text list? (defalt no)"
+	text = raw_input("y/n:\n")
+	print text
+	print "Launch Scipts? (defalt yes)"
+	text = raw_input("y/n:\n")
+	print text
+	print "Pars log files? (defalt no)"
+	text = raw_input("y/n:\n")
+	print text
+
+getOperatingInput(clearDirs, launchScripts, parsFiles)
+	
+'''
 def directoryLogic():
 	print "\n"
 	print os.getcwd()
@@ -63,3 +80,4 @@ for directory in directoryList:
 runUpgrade(directoryList, "/data/dustinhe/designStoreScriptCopy")
 
 print "done"
+'''
