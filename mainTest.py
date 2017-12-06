@@ -54,7 +54,8 @@ def runUpgrade(directoryList, scriptDir):
 		print "python dustinRewrite.py --single_upgrade=" + subDir
 		cmdOut = subprocess.check_output("python dustinRewrite.py --single_upgrade=" + subDir, shell=True)
 
-		
+def parsForErrors():
+	
 
 		
 # ------------------- main starts here -----------------
