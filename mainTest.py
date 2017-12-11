@@ -54,10 +54,47 @@ def runUpgrade(directoryList, scriptDir):
 		print "python dustinRewrite.py --single_upgrade=" + subDir
 		cmdOut = subprocess.check_output("python dustinRewrite.py --single_upgrade=" + subDir, shell=True)
 
-def parsForErrors():
-	
+def getSuccessWords():
+	successKeyWords = []
+	with open("successKeyWords.txt") as sucFile:
+		for line in sucFile:
+			successKeyWords.append(line.replace("\n", ""))
+	return successKeyWords
 
+def getFailWords():
+	errorKeyWords = []
+	with open("errorKeyWords.txt") as errorFile:
+		for line in errorFile:
+			errorKeyWords.append(line.replace("\n", ""))
+	return errorKeyWords
 		
+def checkLogs(directoryList, logFileName, successKeyWords, errorKeyWords):
+	dirNumber = 0
+	passBool = False
+	for dir in directoryList():
+		passBool = False
+		try:
+			os.chdir(scriptDir)
+		except:
+			exit()
+		try:
+			with open(dir + "/" + logFileName) as log:
+				for line in log:
+					if successKeyWords[dirNumber] in line:
+						passBool = True
+						break
+					if errorKeyWords[dirNumber] in line:
+						passBool = False
+						break
+		except:
+			print "failed to open log file for: ", dir
+		if(passBool == True):
+			print "Pass: ", dir
+		else:
+			print "Fail: ", dir
+		dirNumber = dirNumber + 1
+
+
 # ------------------- main starts here -----------------
 
 clearDirs, launchScripts, parsFiles = getOperatingInput(clearDirs, launchScripts, parsFiles)
@@ -88,4 +125,6 @@ for directory in directoryList:
 if(launchScripts == True):
 	runUpgrade(directoryList, "/data/dustinhe/designStoreScriptCopy")
 
+checkLogs(directoryList, logFileName, successKeyWords, errorKeyWords)
+	
 print "done"
