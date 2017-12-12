@@ -10,6 +10,9 @@ clearDirs = False
 launchScripts = True
 parsFiles = False
 logFileName = "/LOGOUT.log"
+successKeyWords = []
+errorKeyWords = []
+
 
 def parsInput(text):
 	text = text.strip(" ")
@@ -70,28 +73,35 @@ def getFailWords():
 		
 def checkLogs(directoryList, logFileName, successKeyWords, errorKeyWords):
 	dirNumber = 0
-	passBool = False
-	for dir in directoryList():
-		passBool = False
+	#passBool = False
+	for dir in directoryList:
+		skipBool = False
 		try:
-			os.chdir(scriptDir)
+			os.chdir(dir)
 		except:
 			exit()
 		try:
 			with open(dir + "/" + logFileName) as log:
 				for line in log:
-					if successKeyWords[dirNumber] in line:
-						passBool = True
+					#print line
+					if line.find("Done!") != -1:
+						skipBool = True 
+						print "Pass: ", dir
+						print "\tpass word: ", successKeyWords[dirNumber]
+						print "\tfail word: ", errorKeyWords[dirNumber]
 						break
-					if errorKeyWords[dirNumber] in line:
-						passBool = False
-						break
+					if line.find("ERROR:") != -1:
+						skipBool = True
+						print "Fail: ", dir
+						print "\tpass word: ", successKeyWords[dirNumber]
+						print "\tfail word: ", errorKeyWords[dirNumber]
 		except:
 			print "failed to open log file for: ", dir
-		if(passBool == True):
-			print "Pass: ", dir
-		else:
+		if(skipBool == False):
 			print "Fail: ", dir
+			print "\tpass word: ", successKeyWords[dirNumber]
+			print "\tfail word: ", errorKeyWords[dirNumber]
+			
 		dirNumber = dirNumber + 1
 
 
@@ -102,6 +112,11 @@ clearDirs, launchScripts, parsFiles = getOperatingInput(clearDirs, launchScripts
 with open("directoryList.txt") as dirFile:
 	directoryList = dirFile.read().splitlines()
 	
+successKeyWords = getSuccessWords()
+errorKeyWords = getFailWords()
+
+print successKeyWords[1]
+
 print "before"
 for dir in directoryList:
 	print dir
@@ -125,6 +140,8 @@ for directory in directoryList:
 if(launchScripts == True):
 	runUpgrade(directoryList, "/data/dustinhe/designStoreScriptCopy")
 
-checkLogs(directoryList, logFileName, successKeyWords, errorKeyWords)
+if(parsFiles == True):
+	print "checking logs"
+	checkLogs(directoryList, logFileName, successKeyWords, errorKeyWords)
 	
 print "done"
