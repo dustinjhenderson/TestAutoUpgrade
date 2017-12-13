@@ -95,6 +95,7 @@ def checkLogs(directoryList, logFileName, successKeyWords, errorKeyWords):
 						print "Fail: ", dir
 						print "\tpass word: ", successKeyWords[dirNumber]
 						print "\tfail word: ", errorKeyWords[dirNumber]
+						break
 		except:
 			print "failed to open log file for: ", dir
 		if(skipBool == False):
