@@ -4,3 +4,4 @@
 /data/dustinhe/autoUpgrade/17.1/an690AvmmDma
 /data/dustinhe/autoUpgrade/17.1/beMicroFullNios_16.0/jimmy
 /data/dustinhe/autoUpgrade/17.1/simplePwm
+/data/dustinhe/autoUpgrade/17.1/C10_PWM_top
