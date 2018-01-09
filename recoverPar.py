@@ -1,13 +1,34 @@
 #Dustin Henderson
 #recover par files.
+#/data/dustinhe/autoUpgrade/17.1/c10/
 import os
+from shutil import copyfile
 
+def parsInput(text):
+	text = text.strip(" ")
+	text = text.lower()
+	if text[0] == "y":
+		return True
+	else:
+		return False
+
+def getOperatingInput():
+	targetDir = ""
+	confirm = False
+	print "What Directory?"
+	targetDir = raw_input("dir: ")
+	print "The Directory you entered is: ", targetDir, " is this correct?"
+	confirm = raw_input("y/n:\n")
+	confirm = parsInput(confirm)
+	if(confirm == True):
+		return targetDir
+	else:
+		exit()
 
 '''
 * pulled from the original script
 '''
 def findAllFilesOfType(fileExt): #pulled from original script
-	logging.debug("def: findAllFilesOfType")
 	"""
 	Gets a list of all the files of a certain type in a directory
 	:param file_ext: a string representing the file type to search for
@@ -34,9 +55,17 @@ def findAllFilesOfType(fileExt): #pulled from original script
 '''----------------------------------------------------------------------------------------------------------------------------'''
 '''******************************************************* MAIN ***************************************************************'''
 '''----------------------------------------------------------------------------------------------------------------------------'''
+targetDir = ""
 parList = []
 
-parList = findAllFileOfType("par")
+targetDir = getOperatingInput()
+try:
+	os.chdir(targetDir)
+except:
+	print "directory error"
+	exit()
+
+parList = findAllFilesOfType("par")
 
 for fileName in parList:
-	print fileName
+	print copyfile(fileName, os.path.basename(fileName))
